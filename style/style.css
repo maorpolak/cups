@@ -13,13 +13,28 @@
     border: 1px solid black;
 }
 
+.playcard-inner {
+    display: table;
+}
+
 .playcard.facedown {
     background-color: #373a3c;
 }
 
+.playcard.facedown .suit {
+    color: transparent;
+}
+
 .suit {
-    margin-top: 50%;
-    display: block;
+    font-size: 2em;
+    width: 50%;
+    height: 50%;
+    overflow: auto;
+    margin: auto;
+    position: absolute;
+    top: 40%;
+    left: 0;
+    right: 0;
 }
 
 .value {
@@ -44,4 +59,8 @@
 .bottom-right {
     right: 10px;
     bottom: 10px;
+}
+
+.heart, .diamond {
+    color: red;
 }
