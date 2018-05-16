@@ -1,5 +1,11 @@
 import _ from 'lodash';
 
+import {
+    CARD_DRAWN,
+    FLOP_ADDED,
+    HAND_ADDED,
+} from "../actions/index";
+
 const initialState = {
     deck: _.shuffle([
         { value: 'Ace', suit: 'heart' },
@@ -59,6 +65,27 @@ const initialState = {
     hands: [],
 }
 
-export default function() {
-    return
+export default function(state = initialState, action) {
+    switch (action.type) {
+        case CARD_DRAWN:
+            _.remove(state.deck, {
+                value: action.card.value,
+                suit: action.card.suit
+            });
+
+            return Object.assign({}, state, {
+                deck: state.deck,
+            })
+
+        case FLOP_ADDED:
+            return Object.assign({}, state, {
+                flops: [...state.flops, [action.cards]]
+            })
+        case HAND_ADDED:
+            return Object.assign({}, state, {
+                hands: [...state.hands, [action.cards]]
+            })
+        default:
+            return state
+    }
 }

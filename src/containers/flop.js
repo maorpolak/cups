@@ -1,15 +1,23 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
 
-class Flop extends Component {
+export default class Flop extends Component {
+
+    constructor(props) {
+        super(props);
+    }
 
     renderList() {
-        return this.props.deck.splice(0, 5).map((card, index) => {
+        return this.props.cards.map((card, index) => {
+            card = card.card;
             const hideIndex = [3,4];
-            const classes = `list-group-item ${hideIndex.includes(index) ? 'facedown' : ''}`;
+            const classes = `playcard ${hideIndex.includes(index) ? 'facedown' : ''}`;
             return (
-                <li key={`${card.value}${card.suite}`} className={classes}>
-                    <span>{card.value} - {card.suite}</span>
+                <li key={`${card.value}${card.suit}`} className={classes}>
+                    <span className="value top-left">{card.value}</span>
+                    <span className="value top-right">{card.value}</span>
+                    <span className="suit">{card.suit}</span>
+                    <span className="value bottom-left">{card.value}</span>
+                    <span className="value bottom-right">{card.value}</span>
                 </li>
             )
         });
@@ -17,18 +25,9 @@ class Flop extends Component {
 
     render() {
         return (
-            <ul className="list-group col-sm-4">
+            <ul className="playcards-row">
                 {this.renderList()}
             </ul>
         )
     }
-}
-
-function mapStateToProps(state) {
-    return {
-        deck: state.deck,
-        hands: state.hands,
-    };
-}
-
-export default connect(mapStateToProps)(Flop);
+};

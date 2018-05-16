@@ -1,19 +1,15 @@
 export default function() {
     return [
         {
-            name: 'Player 1',
+            index: 1,
             cards: []
         },
         {
-            name: 'Player 2',
+            index: 2,
             cards: []
         },
         {
-            name: 'Player 3',
-            cards: []
-        },
-        {
-            name: 'Player 4',
+            index: 3,
             cards: []
         },
     ];

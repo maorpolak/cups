@@ -1,3 +1,47 @@
-.list-group-item.facedown {
+.playcards-row {
+    list-style-type: none;
+    display: table;
+    width: 100%;
+    table-layout: fixed;
+}
+
+.playcard {
+    position: relative;
+    display: table-cell;
+    text-align: center;
+    height: 250px;
+    border: 1px solid black;
+}
+
+.playcard.facedown {
     background-color: #373a3c;
+}
+
+.suit {
+    margin-top: 50%;
+    display: block;
+}
+
+.value {
+    position: absolute;
+}
+
+.top-left {
+    left: 10px;
+    top: 10px;
+}
+
+.top-right {
+    right: 10px;
+    top: 10px;
+}
+
+.bottom-left {
+    left: 10px;
+    bottom: 10px;
+}
+
+.bottom-right {
+    right: 10px;
+    bottom: 10px;
 }
