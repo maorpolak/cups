@@ -78,6 +78,7 @@ export default function(state = initialState, action) {
             })
 
         case FLOP_ADDED:
+            console.log([...state.flops, [action.cards]]);
             return Object.assign({}, state, {
                 flops: [...state.flops, [action.cards]]
             })

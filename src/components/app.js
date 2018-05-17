@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Flop from '../containers/flop';
+import Hand from '../containers/hand';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { drawCard } from '../actions/index';
@@ -10,11 +11,13 @@ class App extends Component {
         super(props);
     }
 
-    drawCards(amount) {
+    drawCards(amount, facedown = 0) {
         const cards = [];
         for (let i = 0; i < amount; i++) {
-            const card = this.props.deck.pop();
-            console.log(card);
+            let card = this.props.deck.pop();
+            if (amount - facedown === i) {
+                card.facedown = true;
+            }
             cards.push(this.props.drawCard(card));
         }
         return cards;
@@ -23,10 +26,12 @@ class App extends Component {
     render() {
     return (
       <div>
-        <h1>Cups!</h1>
-        <Flop cards={this.drawCards(5)} />
-        <Flop cards={this.drawCards(5)}/>
-        <Flop cards={this.drawCards(5)}/>
+          <h1>Cups!</h1>
+          <Flop cards={this.drawCards(5, 2)} />
+          <Flop cards={this.drawCards(5, 2)}/>
+          <Flop cards={this.drawCards(5, 2)}/>
+          <hr/>
+          <Hand cards={this.drawCards(12)}/>
       </div>
     );
     }

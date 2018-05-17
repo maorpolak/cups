@@ -13,6 +13,10 @@
     border: 1px solid black;
 }
 
+.playcard.hand {
+    height: 160px;
+}
+
 .playcard-inner {
     display: table;
 }
