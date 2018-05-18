@@ -1,25 +1,23 @@
 import React, { Component } from 'react';
-import { renderSuitSymbol } from '../helpers/index';
+import { renderCard } from '../helpers/index';
+import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import { addFlop } from '../actions/index';
 
-export default class Flop extends Component {
+class Flop extends Component {
 
     constructor(props) {
         super(props);
+
+        this.props.addFlop(this.props.cards);
     }
 
     renderList() {
         return this.props.cards.map((card, index) => {
             card = card.card;
-            const hideIndex = [3,4];
-            const classes = `playcard ${hideIndex.includes(index) ? 'facedown' : ''}`;
-            const suitClasses = `suit ${card.suit}`;
             return (
-                <li key={`${card.value}${card.suit}`} className={classes}>
-                    <span className="value top-left">{card.value}</span>
-                    <span className="value top-right">{card.value}</span>
-                    <span className={suitClasses}>{renderSuitSymbol(card.suit)}</span>
-                    <span className="value bottom-left">{card.value}</span>
-                    <span className="value bottom-right">{card.value}</span>
+                <li key={index} className="playcard-place">
+                    {renderCard(card, card.facedown)}
                 </li>
             )
         });
@@ -33,3 +31,18 @@ export default class Flop extends Component {
         )
     }
 };
+
+
+function mapStateToProps(state) {
+    return {};
+}
+
+// Anything returned from this function will end up as props
+// on the BookList container
+function mapDispatchToProps(dispatch) {
+    // Whenever drawBook is called, the result should be passed
+    // to all of our reducers
+    return bindActionCreators({ addFlop: addFlop }, dispatch);
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Flop);

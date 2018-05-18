@@ -15,7 +15,7 @@ class App extends Component {
         const cards = [];
         for (let i = 0; i < amount; i++) {
             let card = this.props.deck.pop();
-            if (amount - facedown === i) {
+            if (i >= (amount - facedown)) {
                 card.facedown = true;
             }
             cards.push(this.props.drawCard(card));
